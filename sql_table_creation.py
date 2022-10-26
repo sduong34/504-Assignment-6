@@ -5,14 +5,7 @@ from dotenv import load_dotenv
 import os
 import dbm 
 
-def droppingFunction_all(dbList, db_source):
-    for table in dbList:
-        db_source.execute(f'drop table {table}')
-        print(f'dropped table {table}')
-    else:
-        print(f'kept table {table}')
-
-load_dotenv('.env')
+load_dotenv()
 
 MYSQL_HOSTNAME = os.getenv("MYSQL_HOSTNAME")
 MYSQL_USER = os.getenv("MYSQL_USER")
@@ -26,8 +19,6 @@ db = create_engine(connection_string)
 
 tableNames = db.table_names()
 tableNames = ['Patients', 'Medications', 'Treatments_Procedures', 'Conditions', 'Social_Determinants']
-
-droppingFunction_all(tableNames, db)
 
 Patients_table = """
 create table IF NOT EXISTS patients (
