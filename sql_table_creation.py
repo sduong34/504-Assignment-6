@@ -5,20 +5,15 @@ from dotenv import load_dotenv
 import os
 import dbm 
 
-load_dotenv()
+load_dotenv('.env')
 
 MYSQL_HOSTNAME = os.getenv("MYSQL_HOSTNAME")
 MYSQL_USER = os.getenv("MYSQL_USER")
 MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
 MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
-
 connection_string = f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOSTNAME}:3306/{MYSQL_DATABASE}'
 db = create_engine(connection_string)
-
 #create patients, medications, treatments_procedures, conditions, and social determinants
-
-tableNames = db.table_names()
-tableNames = ['Patients', 'Medications', 'Treatments_Procedures', 'Conditions', 'Social_Determinants']
 
 Patients_table = """
 create table IF NOT EXISTS patients (
